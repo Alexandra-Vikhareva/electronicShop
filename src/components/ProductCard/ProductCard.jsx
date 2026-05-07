@@ -1,6 +1,15 @@
 import styles from './ProductCard.module.css';
+import QuantitySelector from '../QuantitySelector/QuantitySelector';
+import { useState } from 'react';
 
 export default function ProductCard({product}) {
+    const [isActive, setIsActive] = useState(false);
+    const [quantity, setQuantity] = useState(1);
+
+    const handleQuantityChange = (newValue) => {
+        setQuantity(newValue);
+    };
+
     return (
         <div className={styles.productCard}>
             <img src={product.image} alt="headphones image" className={styles.photo}/>
@@ -15,7 +24,11 @@ export default function ProductCard({product}) {
 
                 <div className={styles.col2}>
                     <div className={styles.price}>{product.price} $</div>
-                    <button className={styles.btn_buy}>Купить</button>
+                    {isActive ? 
+                        <QuantitySelector
+                            col={quantity}/> 
+                        : <button className={styles.btn_buy} 
+                                  onClick={() => setIsActive(true)}>Купить</button>}
                 </div>
             </div>
         </div>
