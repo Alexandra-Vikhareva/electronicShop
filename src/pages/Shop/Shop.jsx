@@ -19,10 +19,9 @@ export default function Shop() {
     return(
         productsList && 
         <div className={styles.shop}>
-            <p>Страница с товарами</p>
-            <p>Корзина: {cart.join(', ')}</p>
-            <div>
-                <ProductCard product={productsList[0]}/>
+            <div className={styles.shopList}>
+                {productsList.map((item) => <ProductCard product={item} key={item.id}/>)}
+                
             </div>
         </div>
     )
