@@ -1,13 +1,16 @@
 import { useEffect } from "react";
 import useCart from "../../hooks/useCart"
 import { useFetchProducts } from "../../hooks/useFetchProducts";
+import ProductCard from "../../components/ProductCard/ProductCard";
+import styles from './Shop.module.css'
 
 export default function Shop() {
     const cart = useCart();
     const {productsList, error, loading} = useFetchProducts();
 
     useEffect(() => {
-        console.log(productsList)
+        const a = productsList;
+        console.log(a)
     }, [productsList]);
 
     if (error) return <p>Error</p>;
@@ -15,9 +18,11 @@ export default function Shop() {
 
     return(
         productsList && 
-        <div>
-            <p>Страница с товарами</p>
-            <p>Корзина: {cart.join(', ')}</p>
+        <div className={styles.shop}>
+            <div className={styles.shopList}>
+                {productsList.map((item) => <ProductCard product={item} key={item.id}/>)}
+                
+            </div>
         </div>
     )
 }

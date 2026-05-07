@@ -1,0 +1,11 @@
+.shop {
+    background-color: #EAEAEA;
+}
+
+.shopList {
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
