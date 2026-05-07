@@ -5,7 +5,8 @@ import routes from './routes'
 
 function App() {
   const router = createBrowserRouter(routes)
-  const [cart, setCart] = useState(['Первая покупка', 'Вторая покупка']);
+  const [cart, setCart] = useState(['Первая покупка', 'Вторая покупка']);  
+
   return (
       <CartContext value={cart}>
         <RouterProvider router={router} />
