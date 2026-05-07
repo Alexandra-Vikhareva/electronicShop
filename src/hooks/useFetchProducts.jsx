@@ -6,7 +6,7 @@ export function useFetchProducts() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-    fetch('https://fake-store-api.mock.beeceptor.com/api/products')
+    fetch('https://fakestoreapi.com/products')
     .then((response) => {
         if (response.status >= 400) {
             throw new Error('server error');
