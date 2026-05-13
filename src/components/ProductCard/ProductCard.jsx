@@ -6,10 +6,6 @@ export default function ProductCard({product}) {
     const [isActive, setIsActive] = useState(false);
     const [quantity, setQuantity] = useState(1);
 
-    const handleQuantityChange = (newValue) => {
-        setQuantity(newValue);
-    };
-
     return (
         <div className={styles.productCard}>
             <img src={product.image} alt="headphones image" className={styles.photo}/>
@@ -26,7 +22,8 @@ export default function ProductCard({product}) {
                     <div className={styles.price}>{product.price} $</div>
                     {isActive ? 
                         <QuantitySelector
-                            col={quantity}/> 
+                            quantity={quantity}
+                            setQuantity={setQuantity}/> 
                         : <button className={styles.btn_buy} 
                                   onClick={() => setIsActive(true)}>Купить</button>}
                 </div>

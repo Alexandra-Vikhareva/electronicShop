@@ -1,8 +1,8 @@
 import styles from './QuantitySelector.module.css'
-import { useState } from "react"
+// import { useState } from "react"
 
-export default function QuantitySelector({col}) {
-    const [quantity, setQuantity] = useState(col);
+export default function QuantitySelector({quantity, setQuantity}) {
+    // const [quantity, setQuantity] = useState(col);
 
     function handleMinusButton() {
         if (quantity >= 1) setQuantity(quantity - 1)
@@ -35,7 +35,7 @@ export default function QuantitySelector({col}) {
 
             <input type='number' 
                    className={styles.quantityInput} 
-                   value={quantity === 0 && quantity !== col ? '' : quantity}
+                   value={quantity}
                    onChange={handleChangeQuantity}/> 
 
             <button onClick={handlePlusButton} 
