@@ -13,23 +13,34 @@ export default function QuantitySelector({col}) {
     };
 
     function handleChangeQuantity(e) {
-        setQuantity(e.target.value)
+        let value = e.target.value;
+
+        if (value === '') return;
+
+        value = Number(value);
+
+        if (!isNaN(value) & value !== '') {
+            value = Math.min(99, Math.max(0, value));
+            setQuantity(value);
+        }
     }
 
     return (
         <div className={styles.quantitySelector}>
             <button onClick={handleMinusButton} 
-                    className={styles.plusBtn}>
+                    className={styles.minusBtn}
+                    disabled={quantity < 0}>
                          - 
             </button>
 
-            <input type="text" 
+            <input type='number' 
                    className={styles.quantityInput} 
-                   value={quantity}
+                   value={quantity === 0 && quantity !== col ? '' : quantity}
                    onChange={handleChangeQuantity}/> 
 
             <button onClick={handlePlusButton} 
-                    className={styles.minusBtn}>
+                    className={styles.plusBtn}
+                    disabled={quantity > 99}>
                          + 
             </button>
         </div>
