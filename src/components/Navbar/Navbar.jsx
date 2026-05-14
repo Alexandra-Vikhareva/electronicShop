@@ -14,11 +14,8 @@ export default function Navbar() {
             <div className={styles.navLinks}> 
                 <Link to="/shop" className={styles.link}>Shop</Link>
                 <Link to="/cart" className={styles.cartLink}>Cart
-                    <span className={styles.cartCount}>
-                        {totalQuantity > 0 
-                        ? totalQuantity 
-                        : ''}
-                    </span>
+                    {totalQuantity > 0 && 
+                    <span className={styles.cartCount}>{totalQuantity}</span>}
                 </Link>
             </div>
         </nav>
