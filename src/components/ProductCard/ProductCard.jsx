@@ -1,25 +1,24 @@
 import styles from './ProductCard.module.css';
 import QuantitySelector from '../QuantitySelector/QuantitySelector';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useCart from '../../hooks/useCart';
 
 export default function ProductCard({product}) {
-    const [isActive, setIsActive] = useState(false);
-    const [quantity, setQuantity] = useState(1);
-
     const {cart, addToCart} = useCart();
 
-    function handleAddToCart() {
-        addToCart({'product': product.id, 'quantity':quantity});
-    };
+    const isActive = cart.some(item => item.product === product.id);
+    const cartItem = cart.find(item => item.product === product.id);
+    const initialQuantity = cartItem ? cartItem.quantity : 1;
+    const [quantity, setQuantity] = useState(initialQuantity);
 
-    useEffect(() => {
-        console.log(cart)
-    }, [cart]);
+    function handleAddToCart() {
+        addToCart({'product': product.id, 'quantity': 1});
+        setQuantity(1);
+    };
 
     return (
         <div className={styles.productCard}>
-            <img src={product.image} alt="headphones image" className={styles.photo}/>
+            <img src={product.image} alt="product image" className={styles.photo}/>
             <div className={styles.info}>
                 <div className={styles.col1}>
                     <div className={styles.itemName}>{product.title}</div>
@@ -37,10 +36,8 @@ export default function ProductCard({product}) {
                             setQuantity={setQuantity}
                             addToCart={addToCart}
                             product={product.id}/> 
-                        : <button className={styles.btn_buy} 
-                                  onClick={() => {handleAddToCart();
-                                                  setIsActive(true)}}>
-                                                    Купить
+                        : <button className={styles.btn_buy}  onClick={handleAddToCart}>
+                            Купить
                           </button>}
                 </div>
             </div>
