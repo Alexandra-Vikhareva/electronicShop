@@ -6,7 +6,6 @@ export default function Cart() {
     return (
         <div>
             <p>Корзина покупателя</p>
-            <p>Контекст в Cart: {context.join(', ')}</p>
         </div>
     )
 }
