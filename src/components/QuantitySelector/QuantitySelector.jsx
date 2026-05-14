@@ -1,15 +1,17 @@
 import styles from './QuantitySelector.module.css'
-// import { useState } from "react"
 
-export default function QuantitySelector({quantity, setQuantity}) {
-    // const [quantity, setQuantity] = useState(col);
+export default function QuantitySelector({quantity, setQuantity, addToCart, product}) {
 
     function handleMinusButton() {
-        if (quantity >= 1) setQuantity(quantity - 1)
+        if (quantity >= 1) {
+            addToCart({'product': product, 'quantity': quantity - 1});
+            setQuantity(quantity - 1);
+        }
     };
 
     function handlePlusButton() {
-        setQuantity(quantity + 1)
+        addToCart({'product': product, 'quantity': quantity + 1});
+        setQuantity(quantity + 1);
     };
 
     function handleChangeQuantity(e) {
@@ -25,6 +27,13 @@ export default function QuantitySelector({quantity, setQuantity}) {
         }
     }
 
+    function handleChangeCart(e) {
+        let value = e.target.value;
+        value = Number(value);
+        
+        addToCart({'product': product, 'quantity': value});
+    }
+
     return (
         <div className={styles.quantitySelector}>
             <button onClick={handleMinusButton} 
@@ -36,7 +45,8 @@ export default function QuantitySelector({quantity, setQuantity}) {
             <input type='number' 
                    className={styles.quantityInput} 
                    value={quantity}
-                   onChange={handleChangeQuantity}/> 
+                   onChange={handleChangeQuantity}
+                   onBlur={handleChangeCart}/> 
 
             <button onClick={handlePlusButton} 
                     className={styles.plusBtn}

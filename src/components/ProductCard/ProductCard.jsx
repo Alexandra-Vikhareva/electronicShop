@@ -1,10 +1,21 @@
 import styles from './ProductCard.module.css';
 import QuantitySelector from '../QuantitySelector/QuantitySelector';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import useCart from '../../hooks/useCart';
 
 export default function ProductCard({product}) {
     const [isActive, setIsActive] = useState(false);
     const [quantity, setQuantity] = useState(1);
+
+    const {cart, addToCart} = useCart();
+
+    function handleAddToCart() {
+        addToCart({'product': product.id, 'quantity':quantity});
+    };
+
+    useEffect(() => {
+        console.log(cart)
+    }, [cart]);
 
     return (
         <div className={styles.productCard}>
@@ -23,9 +34,14 @@ export default function ProductCard({product}) {
                     {isActive ? 
                         <QuantitySelector
                             quantity={quantity}
-                            setQuantity={setQuantity}/> 
+                            setQuantity={setQuantity}
+                            addToCart={addToCart}
+                            product={product.id}/> 
                         : <button className={styles.btn_buy} 
-                                  onClick={() => setIsActive(true)}>Купить</button>}
+                                  onClick={() => {handleAddToCart();
+                                                  setIsActive(true)}}>
+                                                    Купить
+                          </button>}
                 </div>
             </div>
         </div>
