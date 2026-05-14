@@ -4,14 +4,18 @@ export default function QuantitySelector({quantity, setQuantity, addToCart, prod
 
     function handleMinusButton() {
         if (quantity >= 1) {
-            addToCart({'product': product, 'quantity': quantity - 1});
-            setQuantity(quantity - 1);
+            const newQuantity = quantity - 1;
+            addToCart({'product': product, 'quantity': newQuantity});
+            setQuantity(newQuantity);
         }
     };
 
     function handlePlusButton() {
-        addToCart({'product': product, 'quantity': quantity + 1});
-        setQuantity(quantity + 1);
+        if (quantity <= 99) {
+            const newQuantity = quantity + 1;
+            addToCart({'product': product, 'quantity': newQuantity});
+            setQuantity(newQuantity);
+        }
     };
 
     function handleChangeQuantity(e) {
@@ -28,9 +32,7 @@ export default function QuantitySelector({quantity, setQuantity, addToCart, prod
     }
 
     function handleChangeCart(e) {
-        let value = e.target.value;
-        value = Number(value);
-        
+        let value = Number(e.target.value);        
         addToCart({'product': product, 'quantity': value});
     }
 
@@ -38,7 +40,7 @@ export default function QuantitySelector({quantity, setQuantity, addToCart, prod
         <div className={styles.quantitySelector}>
             <button onClick={handleMinusButton} 
                     className={styles.minusBtn}
-                    disabled={quantity < 0}>
+                    disabled={quantity <= 0}>
                          - 
             </button>
 
@@ -50,7 +52,7 @@ export default function QuantitySelector({quantity, setQuantity, addToCart, prod
 
             <button onClick={handlePlusButton} 
                     className={styles.plusBtn}
-                    disabled={quantity > 99}>
+                    disabled={quantity >= 99}>
                          + 
             </button>
         </div>
