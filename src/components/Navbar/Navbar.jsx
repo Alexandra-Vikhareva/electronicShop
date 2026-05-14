@@ -1,5 +1,6 @@
 import useCart from "../../hooks/useCart";
 import { Link } from "react-router";
+import styles from './Navbar.module.css'
 
 export default function Navbar() {
     const { cart } = useCart()
@@ -8,14 +9,18 @@ export default function Navbar() {
                         , 0);
 
     return (
-        <nav>
-            <Link to="/">Home</Link>
-            <Link to="/shop">Shop</Link>
-            <Link to="/cart">Cart</Link>
-            <span>{totalQuantity > 0 
+        <nav className={styles.navbar}>
+            <Link to="/" className={styles.logo}>Home</Link>
+            <div className={styles.navLinks}> 
+                <Link to="/shop" className={styles.link}>Shop</Link>
+                <Link to="/cart" className={styles.cartLink}>Cart
+                    <span className={styles.cartCount}>
+                        {totalQuantity > 0 
                         ? totalQuantity 
                         : ''}
-            </span>
+                    </span>
+                </Link>
+            </div>
         </nav>
     )
 }
