@@ -12,7 +12,12 @@ export default function ProductCard({product}) {
     const [quantity, setQuantity] = useState(initialQuantity);
 
     function handleAddToCart() {
-        addToCart({'product': product.id, 'quantity': 1});
+        addToCart({
+            product: product.id, 
+            title: product.title,
+            price: product.price,
+            image: product.image,
+            quantity: 1});
         setQuantity(1);
     };
 
@@ -35,8 +40,11 @@ export default function ProductCard({product}) {
                             quantity={quantity}
                             setQuantity={setQuantity}
                             addToCart={addToCart}
-                            product={product.id}/> 
-                        : <button className={styles.btn_buy}  onClick={handleAddToCart}>
+                            product={product}
+                        />
+                        : <button className={styles.btn_buy}  onClick={() => {
+                            console.log(product, isActive, cart);
+                            handleAddToCart()}}>
                             Купить
                           </button>}
                 </div>
