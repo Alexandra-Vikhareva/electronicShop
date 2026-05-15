@@ -1,63 +1,51 @@
 import styles from './QuantitySelector.module.css'
 
-export default function QuantitySelector({quantity, setQuantity, addToCart, product}) {
+export default function QuantitySelector({ quantity, onChange }) {
 
-    function handleMinusButton() {
-        if (quantity >= 1) {
-            const newQuantity = quantity - 1;
-            addToCart({
-                product: product.id, 
-                title: product.title,
-                price: product.price,
-                image: product.image,
-                quantity: newQuantity});
-            setQuantity(newQuantity);
+    function handleMinus() {
+        if (quantity > 0) {
+            onChange(quantity - 1);
         }
-    };
+    }
 
-    function handlePlusButton() {
-        if (quantity <= 99) {
-            const newQuantity = quantity + 1;
-            addToCart({
-                product: product.id, 
-                title: product.title,
-                price: product.price,
-                image: product.image,
-                quantity: newQuantity});
-            setQuantity(newQuantity);
+    function handlePlus() {
+        if (quantity < 99) {
+            onChange(quantity + 1);
         }
-    };
+    }
 
-    function handleChangeQuantity(e) {
-        let value = e.target.value;
+    function handleInput(e) {
+        const value = e.target.value;
 
         if (value === '') return;
 
-        value = Number(value);
-
-        if (!isNaN(value) & value !== '') {
-            value = Math.min(99, Math.max(0, value));
-            setQuantity(value);
+        const num = Number(value);
+        if (!isNaN(num)) {
+            onChange(Math.min(99, Math.max(0, num)));
         }
     }
 
     return (
         <div className={styles.quantitySelector}>
-            <button onClick={handleMinusButton} 
-                    className={styles.minusBtn}
-                    disabled={quantity <= 0}>
-                         - 
+            <button
+                onClick={handleMinus}
+                className={styles.minusBtn}
+                disabled={quantity <= 0}>
+                -
             </button>
 
-            <input type='number' 
-                   className={styles.quantityInput} 
-                   value={quantity}
-                   onChange={handleChangeQuantity}/> 
+            <input
+                type='number'
+                className={styles.quantityInput}
+                value={quantity}
+                onChange={handleInput}
+            />
 
-            <button onClick={handlePlusButton} 
-                    className={styles.plusBtn}
-                    disabled={quantity >= 99}>
-                         + 
+            <button
+                onClick={handlePlus}
+                className={styles.plusBtn}
+                disabled={quantity >= 99}>
+                +
             </button>
         </div>
     )
