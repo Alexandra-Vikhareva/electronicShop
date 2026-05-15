@@ -5,7 +5,12 @@ export default function QuantitySelector({quantity, setQuantity, addToCart, prod
     function handleMinusButton() {
         if (quantity >= 1) {
             const newQuantity = quantity - 1;
-            addToCart({'product': product, 'quantity': newQuantity});
+            addToCart({
+                product: product.id, 
+                title: product.title,
+                price: product.price,
+                image: product.image,
+                quantity: newQuantity});
             setQuantity(newQuantity);
         }
     };
@@ -13,7 +18,12 @@ export default function QuantitySelector({quantity, setQuantity, addToCart, prod
     function handlePlusButton() {
         if (quantity <= 99) {
             const newQuantity = quantity + 1;
-            addToCart({'product': product, 'quantity': newQuantity});
+            addToCart({
+                product: product.id, 
+                title: product.title,
+                price: product.price,
+                image: product.image,
+                quantity: newQuantity});
             setQuantity(newQuantity);
         }
     };
