@@ -41,16 +41,6 @@ export default function QuantitySelector({quantity, setQuantity, addToCart, prod
         }
     }
 
-    // function handleChangeCart(e) {
-    //     let value = Number(e.target.value);        
-    //     addToCart({
-    //             product: product.id, 
-    //             title: product.title,
-    //             price: product.price,
-    //             image: product.image,
-    //             quantity: value});
-    // }
-
     return (
         <div className={styles.quantitySelector}>
             <button onClick={handleMinusButton} 
