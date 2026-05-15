@@ -40,8 +40,11 @@ export default function ProductCard({product}) {
                             quantity={quantity}
                             setQuantity={setQuantity}
                             addToCart={addToCart}
-                            product={product}/> 
-                        : <button className={styles.btn_buy}  onClick={handleAddToCart}>
+                            product={product}
+                        />
+                        : <button className={styles.btn_buy}  onClick={() => {
+                            console.log(product, isActive, cart);
+                            handleAddToCart()}}>
                             Купить
                           </button>}
                 </div>

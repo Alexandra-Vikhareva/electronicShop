@@ -17,11 +17,15 @@ export default function CartItem({product}) {
                             addToCart({ ...product, quantity: newQuantity });
                         }}
                         addToCart={addToCart}
-                        product={product.id}/>
+                        product={product}/>
                 </div>
                 <div className={styles.rightSection}>
-                    <button className={styles.removeBtn}>✕</button>
-                    <div className={styles.price}>{product.price} $</div>
+                    <button 
+                        className={styles.removeBtn}
+                        onClick={() => {
+                            addToCart({ ...product, quantity: 0 });
+                        }}>✕</button>
+                    <div className={styles.price}>{product.price * product.quantity} $</div>
                 </div>
             </div>
                 

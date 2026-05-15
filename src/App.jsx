@@ -15,9 +15,16 @@ function App() {
   }, [cart]);
 
   function addToCart(newItem) {
-    if (newItem.quantity != 0) {
-      const newCart = [...cart.filter(cartItem => cartItem.product !== newItem.product), newItem];
-      setCart(newCart)
+    if (newItem.quantity !== 0) {
+      const exist = cart.some(cartItem => cartItem.product == newItem.product);
+      if (exist) {
+        const newCart = cart.map(cartItem => cartItem.product === newItem.product ? newItem : cartItem);
+        setCart(newCart);
+      } else {
+        const newCart = [...cart.filter(cartItem => cartItem.product !== newItem.product), newItem];
+        setCart(newCart);
+      }
+      
     } else {
       const newCart = [...cart.filter(cartItem => cartItem.product !== newItem.product)];
       setCart(newCart)
