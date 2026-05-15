@@ -39,7 +39,7 @@ export default function ProductCard({ product }) {
                 <div className={styles.col1}>
                     <div className={styles.itemName}>{product.title}</div>
                     <div className={styles.star}>
-                        <img src="/Star.svg" alt="star icon" className={styles.icon} />
+                        <img src="/electronicShop/Star.svg" alt="star icon" className={styles.icon} />
                         <span className={styles.rating}>{product.rating.rate}</span>
                     </div>
                 </div>
