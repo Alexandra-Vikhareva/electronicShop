@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { CartContext } from "./context/CartContext"
-import { RouterProvider, createBrowserRouter } from "react-router"
+import { RouterProvider, createHashRouter } from "react-router"
 import routes from './routes'
 
 function App() {
-  const router = createBrowserRouter(routes)
+  const router = createHashRouter(routes)
   const [cart, setCart] = useState(() => {
     const savedCart = sessionStorage.getItem('cart');
     return savedCart ? JSON.parse(savedCart) : [];
