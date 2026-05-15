@@ -1,11 +1,9 @@
 import { useEffect } from "react";
-import useCart from "../../hooks/useCart"
 import { useFetchProducts } from "../../hooks/useFetchProducts";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from './Shop.module.css'
 
 export default function Shop() {
-    const cart = useCart();
     const {productsList, error, loading} = useFetchProducts();
 
     useEffect(() => {

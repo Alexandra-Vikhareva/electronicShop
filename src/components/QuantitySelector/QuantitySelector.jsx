@@ -41,15 +41,15 @@ export default function QuantitySelector({quantity, setQuantity, addToCart, prod
         }
     }
 
-    function handleChangeCart(e) {
-        let value = Number(e.target.value);        
-        addToCart({
-                product: product.id, 
-                title: product.title,
-                price: product.price,
-                image: product.image,
-                quantity: value});
-    }
+    // function handleChangeCart(e) {
+    //     let value = Number(e.target.value);        
+    //     addToCart({
+    //             product: product.id, 
+    //             title: product.title,
+    //             price: product.price,
+    //             image: product.image,
+    //             quantity: value});
+    // }
 
     return (
         <div className={styles.quantitySelector}>
@@ -62,8 +62,7 @@ export default function QuantitySelector({quantity, setQuantity, addToCart, prod
             <input type='number' 
                    className={styles.quantityInput} 
                    value={quantity}
-                   onChange={handleChangeQuantity}
-                   onBlur={handleChangeCart}/> 
+                   onChange={handleChangeQuantity}/> 
 
             <button onClick={handlePlusButton} 
                     className={styles.plusBtn}

@@ -25,7 +25,7 @@ export default function CartItem({product}) {
                         onClick={() => {
                             addToCart({ ...product, quantity: 0 });
                         }}>✕</button>
-                    <div className={styles.price}>{product.price * product.quantity} $</div>
+                    <div className={styles.price}>{(product.price * product.quantity).toFixed(2)} $</div>
                 </div>
             </div>
                 
